@@ -215,7 +215,7 @@ app.get('/stocks/sort/growth', (req, res) => {
 /*
 Endpoint 3: Filter the stocks based on the 2 Stock Exchange (NSE. and BSE)
 API Call:
-<http://localhost:3000/stocks/filter/exchange/nse>
+<http://localhost:3000/stocks/filter/exchange?exchange=nse>
 Expected Output:
 JSON of stocks from NSE or BSE.
 */
@@ -225,8 +225,8 @@ function filterByExchange(stocks, exchangeName) {
   );
 }
 
-app.get('/stocks/filter/exchange/:exchange', (req, res) => {
-  let exchangeName = req.params.exchange;
+app.get('/stocks/filter/exchange/', (req, res) => {
+  let exchangeName = req.query.exchange;
   res.json({ stocks: filterByExchange(stocks, exchangeName) });
 });
 
@@ -237,7 +237,7 @@ Finance
 Pharma
 Power
 API Call:
-<http://localhost:3000/stocks/filter/industry/power>
+<http://localhost:3000/stocks/filter/industry?industry=finance>
 Expected Output:
 JSON of stocks for the selected industry.
 */
@@ -247,8 +247,8 @@ function filterByIndustry(stocks, industryName) {
   );
 }
 
-app.get('/stocks/filter/industry/:industry', (req, res) => {
-  let industryName = req.params.industry;
+app.get('/stocks/filter/industry', (req, res) => {
+  let industryName = req.query.industry;
   res.json({ stocks: filterByIndustry(stocks, industryName) });
 });
 
