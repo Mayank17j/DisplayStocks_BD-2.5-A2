@@ -172,8 +172,8 @@ let stocks = [
 /*
 Endpoint 1: Get the stocks sorted by pricing
 API Call:
-<http://localhost:3000/stocks/sort/pricing/low-to-high>
-<http://localhost:3000/stocks/sort/pricing/high-to-low>
+<http://localhost:3000/stocks/sort/pricing?pricing=low-to-high>
+<http://localhost:3000/stocks/sort/pricing?pricing=high-to-low>
 Expected Output:JSON of sorted stocks low-to-high or high-to-low.
 */
 function sortByPrice(stocksData, pricing) {
@@ -184,8 +184,8 @@ function sortByPrice(stocksData, pricing) {
   }
 }
 
-app.get('/stocks/sort/pricing/:sortingOrder', (req, res) => {
-  let pricing = req.params.sortingOrder;
+app.get('/stocks/sort/pricing', (req, res) => {
+  let pricing = req.query.pricing;
   let stocksData = stocks.slice();
   res.json({ stocks: sortByPrice(stocksData, pricing) });
 });
@@ -193,8 +193,8 @@ app.get('/stocks/sort/pricing/:sortingOrder', (req, res) => {
 /*
 Endpoint 2: Get the stocks sorted based on their Growth.
 API Call:
-<http://localhost:3000/stocks/sort/growth/low-to-high>
-<http://localhost:3000/stocks/sort/growth/high-to-low>
+<http://localhost:3000/stocks/sort/growth?growth=low-to-high>
+<http://localhost:3000/stocks/sort/growth?growth=high-to-low>
 Expected Output:
 JSON of sorted stocks on growth rate (High to Low or Low to High)
 */
@@ -206,8 +206,8 @@ function sortByGrowth(stocksData, growth) {
   }
 }
 
-app.get('/stocks/sort/growth/:sortingOrder', (req, res) => {
-  let growth = req.params.sortingOrder;
+app.get('/stocks/sort/growth', (req, res) => {
+  let growth = req.query.growth;
   let stocksData = stocks.slice();
   res.json({ stocks: sortByGrowth(stocksData, growth) });
 });
