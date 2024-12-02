@@ -264,7 +264,7 @@ Expected Output:
 JSON of all the stocks
 */
 app.get('/stocks', (req, res) => {
-  res.json(stocks);
+  res.json({ stocks: stocks});
 });
 
 app.listen(port, () => {
